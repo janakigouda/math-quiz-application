@@ -8,9 +8,10 @@ export default function Home() {
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
   const [scores, setScores] = useState({});
+  const backendURL = process.env.NEXT_PUBLIC_BACKEND || "http://localhost:8000";
 
   useEffect(() => {
-    const s = io("http://localhost:8000");
+    const s = io(backendURL);
     setSocket(s);
     s.on("currentQuestion", setQuestion);
     s.on("nextQuestion", setQuestion);
